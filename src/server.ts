@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import cron from 'node-cron';
 import { getShortUrlForProduct, searchJDGoods, getPromotionLink } from './index';
 
 const app = express();
@@ -130,6 +131,32 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
+// 启动定时任务：每小时自动刷新 Cookie
+cron.schedule('0 * * * *', async () => {
+  console.log('\n=== Cookie 定时刷新任务开始 ===');
+  console.log('执行时间:', new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }));
+
+  try {
+    // 发送一个简单的搜索请求来触发 Cookie 更新
+    const result = await searchJDGoods({
+      keyWord: '100198609685',
+      pageSize: 1  // 只获取1条结果，减少响应数据
+    });
+
+    if (result.code === 200) {
+      console.log('✅ Cookie 自动刷新成功');
+      console.log('📊 响应状态: 正常');
+    } else {
+      console.log('⚠️  Cookie 刷新完成，但返回异常状态码:', result.code);
+      console.log('📋 错误信息:', result.message);
+    }
+  } catch (error) {
+    console.error('❌ Cookie 自动刷新失败:', error instanceof Error ? error.message : String(error));
+  }
+
+  console.log('=== Cookie 定时刷新任务完成 ===\n');
+});
+
 // 启动服务器
 app.listen(port, () => {
   console.log(`京东短链接服务已启动`);
@@ -139,6 +166,7 @@ app.listen(port, () => {
   console.log(`  POST /api/search`);
   console.log(`  POST /api/promotion-link`);
   console.log(`  GET  /health`);
+  console.log(`\n🔄 Cookie 自动刷新已启用（每小时执行一次）`);
 });
 
 export default app;

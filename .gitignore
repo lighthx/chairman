@@ -13,6 +13,9 @@ build/
 .env.local
 .env.*.local
 
+# Cookie cache
+.cookie-cache.json
+
 # IDE
 .vscode/
 .idea/
