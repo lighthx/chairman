@@ -28,6 +28,9 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
   }
 
   try {
+    // 调试：打印保存的 headers
+    console.log('📋 保存的 headers:', JSON.stringify(savedParams.headers, null, 2));
+
     // 使用保存的 URL（完全不修改）
     let url = savedParams.url;
 

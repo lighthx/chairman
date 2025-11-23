@@ -60,6 +60,62 @@ app.get('/api/short-url', async (req: Request, res: Response) => {
 });
 
 /**
+ * POST /api/update-cookie
+ * 手动更新 cookie（用于补充 httpOnly cookies）
+ * Body: { "functionId": "unionSearchGoods", "cookie": "完整的cookie字符串" }
+ */
+app.post('/api/update-cookie', (req: Request, res: Response) => {
+  try {
+    const { functionId, cookie } = req.body;
+
+    if (!functionId || !cookie) {
+      return res.status(400).json({
+        success: false,
+        message: '请提供 functionId 和 cookie'
+      });
+    }
+
+    if (functionId !== 'unionSearchGoods' && functionId !== 'unionPromoteLinkService') {
+      return res.status(400).json({
+        success: false,
+        message: 'functionId 必须是 unionSearchGoods 或 unionPromoteLinkService'
+      });
+    }
+
+    // 获取现有参数
+    const existingParams = paramsManager.getParams(functionId);
+
+    if (!existingParams) {
+      return res.status(404).json({
+        success: false,
+        message: `未找到 ${functionId} 的参数，请先通过浏览器捕获基本参数`
+      });
+    }
+
+    // 只更新 cookie
+    existingParams.headers.cookie = cookie;
+
+    // 保存回去
+    paramsManager.saveParams(functionId, existingParams);
+
+    console.log(`✅ 手动更新 ${functionId} 的 cookie，长度: ${cookie.length}`);
+
+    res.json({
+      success: true,
+      message: `${functionId} 的 cookie 已更新`,
+      cookieLength: cookie.length
+    });
+  } catch (error) {
+    console.error('更新 cookie 失败:', error);
+    res.status(500).json({
+      success: false,
+      message: '服务器错误',
+      error: error instanceof Error ? error.message : String(error)
+    });
+  }
+});
+
+/**
  * POST /api/search
  * 搜索京东商品
  * Body: { "keyWord": "商品关键词", "pageNo": 1, "pageSize": 60 }
@@ -147,6 +203,22 @@ app.post('/api/capture-params', (req: Request, res: Response) => {
       });
     }
 
+    // 调试：打印接收到的 headers
+    console.log(`📥 收到 ${functionId} 的参数更新`);
+    console.log('🔍 接收到的 headers:', JSON.stringify(headers, null, 2));
+    console.log('🍪 Cookie 存在:', !!headers?.cookie);
+    console.log('🍪 Cookie 长度:', headers?.cookie?.length || 0);
+
+    // 检查是否包含关键字段
+    const criticalFields = ['thor', 'flash', 'pin', '__jdc'];
+    if (headers?.cookie) {
+      const hasCritical = criticalFields.map(field => ({
+        field,
+        exists: headers.cookie.includes(`${field}=`)
+      }));
+      console.log('🔑 关键字段检查:', hasCritical);
+    }
+
     // 保存参数
     paramsManager.saveParams(functionId, {
       url,
@@ -155,8 +227,6 @@ app.post('/api/capture-params', (req: Request, res: Response) => {
       body,
       timestamp: new Date().toISOString()
     });
-
-    console.log(`📥 收到 ${functionId} 的参数更新`);
 
     res.json({
       success: true,
