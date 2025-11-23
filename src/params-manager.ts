@@ -18,6 +18,7 @@ interface StoredParams {
 class ParamsManager {
   private paramsFile: string;
   private params: StoredParams;
+  private loadedOnce: boolean = false;
 
   constructor(paramsFile: string = '.api-params.json') {
     this.paramsFile = path.resolve(process.cwd(), paramsFile);
@@ -29,7 +30,11 @@ class ParamsManager {
       if (fs.existsSync(this.paramsFile)) {
         const data = fs.readFileSync(this.paramsFile, 'utf-8');
         const params = JSON.parse(data);
-        console.log('✅ 从文件加载 API 参数');
+        // 只在首次加载时打印日志
+        if (!this.loadedOnce) {
+          console.log('✅ 从文件加载 API 参数');
+          this.loadedOnce = true;
+        }
         return params;
       }
     } catch (error) {
@@ -65,6 +70,9 @@ class ParamsManager {
   }
 
   public getParams(functionId: string): RequestParams | undefined {
+    // 每次获取参数时重新加载文件，确保获取最新数据
+    this.params = this.loadFromFile();
+
     if (functionId === 'unionSearchGoods') {
       return this.params.unionSearchGoods;
     } else if (functionId === 'unionPromoteLinkService') {
@@ -74,10 +82,15 @@ class ParamsManager {
   }
 
   public getAllParams(): StoredParams {
+    // 重新加载以获取最新数据
+    this.params = this.loadFromFile();
     return this.params;
   }
 
   public getCookie(): string {
+    // 重新加载以获取最新数据
+    this.params = this.loadFromFile();
+
     // 优先从 unionSearchGoods 获取 cookie
     const searchParams = this.params.unionSearchGoods;
     if (searchParams && searchParams.headers && searchParams.headers.cookie) {
