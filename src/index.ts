@@ -71,6 +71,10 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
     });
 
     const data = await response.json();
+
+    // 调试日志
+    console.log('🔍 searchJDGoods 响应:', JSON.stringify(data, null, 2));
+
     return data;
   } catch (error) {
     throw error;
@@ -150,7 +154,16 @@ export async function getShortUrlForProduct(keyWord: string): Promise<any> {
   // 1. 搜索商品
   const searchResult = await searchJDGoods({ keyWord, pageSize: 1 });
 
+  console.log('🔍 搜索结果结构:', {
+    hasResult: !!searchResult.result,
+    hasData: !!searchResult.result?.data,
+    dataLength: searchResult.result?.data?.length,
+    code: searchResult.code,
+    message: searchResult.message
+  });
+
   if (!searchResult.result || !searchResult.result.data || searchResult.result.data.length === 0) {
+    console.error('❌ 完整搜索结果:', JSON.stringify(searchResult, null, 2));
     throw new Error('未找到相关商品');
   }
 
