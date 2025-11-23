@@ -1,12 +1,24 @@
 import express, { Request, Response } from 'express';
-import cron from 'node-cron';
 import { getShortUrlForProduct, searchJDGoods, getPromotionLink } from './index';
+import ParamsManager from './params-manager';
 
 const app = express();
 const port = process.env.PORT || 4000;
+const paramsManager = new ParamsManager();
 
 // 解析 JSON 请求体
 app.use(express.json());
+
+// 允许跨域请求（用于接收油猴脚本发送的数据）
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 /**
  * GET /api/short-url?keyword=商品关键词
@@ -121,6 +133,69 @@ app.post('/api/promotion-link', async (req: Request, res: Response) => {
 });
 
 /**
+ * POST /api/capture-params
+ * 接收油猴脚本发送的请求参数
+ */
+app.post('/api/capture-params', (req: Request, res: Response) => {
+  try {
+    const { url, method, headers, body, functionId } = req.body;
+
+    if (!functionId) {
+      return res.status(400).json({
+        success: false,
+        message: '缺少 functionId 参数'
+      });
+    }
+
+    // 保存参数
+    paramsManager.saveParams(functionId, {
+      url,
+      method,
+      headers,
+      body,
+      timestamp: new Date().toISOString()
+    });
+
+    console.log(`📥 收到 ${functionId} 的参数更新`);
+
+    res.json({
+      success: true,
+      message: '参数已保存',
+      functionId
+    });
+  } catch (error) {
+    console.error('保存参数失败:', error);
+    res.status(500).json({
+      success: false,
+      message: '保存参数失败',
+      error: error instanceof Error ? error.message : String(error)
+    });
+  }
+});
+
+/**
+ * GET /api/params
+ * 查看当前保存的参数
+ */
+app.get('/api/params', (req: Request, res: Response) => {
+  const { functionId } = req.query;
+
+  if (functionId && typeof functionId === 'string') {
+    const params = paramsManager.getParams(functionId);
+    res.json({
+      success: true,
+      data: params
+    });
+  } else {
+    const allParams = paramsManager.getAllParams();
+    res.json({
+      success: true,
+      data: allParams
+    });
+  }
+});
+
+/**
  * GET /health
  * 健康检查接口
  */
@@ -131,32 +206,6 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
-// 启动定时任务：每小时自动刷新 Cookie
-cron.schedule('0 * * * *', async () => {
-  console.log('\n=== Cookie 定时刷新任务开始 ===');
-  console.log('执行时间:', new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }));
-
-  try {
-    // 发送一个简单的搜索请求来触发 Cookie 更新
-    const result = await searchJDGoods({
-      keyWord: '100198609685',
-      pageSize: 1  // 只获取1条结果，减少响应数据
-    });
-
-    if (result.code === 200) {
-      console.log('✅ Cookie 自动刷新成功');
-      console.log('📊 响应状态: 正常');
-    } else {
-      console.log('⚠️  Cookie 刷新完成，但返回异常状态码:', result.code);
-      console.log('📋 错误信息:', result.message);
-    }
-  } catch (error) {
-    console.error('❌ Cookie 自动刷新失败:', error instanceof Error ? error.message : String(error));
-  }
-
-  console.log('=== Cookie 定时刷新任务完成 ===\n');
-});
-
 // 启动服务器
 app.listen(port, () => {
   console.log(`京东短链接服务已启动`);
@@ -165,8 +214,10 @@ app.listen(port, () => {
   console.log(`  GET  /api/short-url?keyword=商品关键词`);
   console.log(`  POST /api/search`);
   console.log(`  POST /api/promotion-link`);
+  console.log(`  POST /api/capture-params`);
+  console.log(`  GET  /api/params`);
   console.log(`  GET  /health`);
-  console.log(`\n🔄 Cookie 自动刷新已启用（每小时执行一次）`);
+  console.log(`\n📡 等待油猴脚本发送参数...`);
 });
 
 export default app;

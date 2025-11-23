@@ -16,6 +16,9 @@ build/
 # Cookie cache
 .cookie-cache.json
 
+# API params cache
+.api-params.json
+
 # IDE
 .vscode/
 .idea/
