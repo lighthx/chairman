@@ -159,18 +159,19 @@ export async function getShortUrlForProduct(keyWord: string): Promise<any> {
 
   console.log('🔍 搜索结果结构:', {
     hasResult: !!searchResult.result,
-    hasData: !!searchResult.result?.data,
-    dataLength: searchResult.result?.data?.length,
+    hasSkuPage: !!searchResult.result?.skuPage,
+    hasSkuPageResult: !!searchResult.result?.skuPage?.result,
+    skuCount: searchResult.result?.skuPage?.result?.length,
     code: searchResult.code,
     message: searchResult.message
   });
 
-  if (!searchResult.result || !searchResult.result.data || searchResult.result.data.length === 0) {
+  if (!searchResult.result || !searchResult.result.skuPage || !searchResult.result.skuPage.result || searchResult.result.skuPage.result.length === 0) {
     console.error('❌ 完整搜索结果:', JSON.stringify(searchResult, null, 2));
     throw new Error('未找到相关商品');
   }
 
-  const firstProduct = searchResult.result.data[0];
+  const firstProduct = searchResult.result.skuPage.result[0];
 
   // 2. 获取推广链接
   const promotionResult = await getPromotionLink({
