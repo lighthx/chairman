@@ -16,8 +16,8 @@ export interface SearchGoodsParams {
 export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
   const {
     keyWord,
-    pageNo = 1,
-    pageSize = 60
+    pageNo,
+    pageSize
   } = params;
 
   // 从 ParamsManager 获取保存的请求参数
@@ -28,50 +28,42 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
   }
 
   try {
-    // 构建请求body
-    const bodyData = {
-      "funName": "search",
-      "page": {
-        "pageNo": pageNo,
-        "pageSize": pageSize
-      },
-      "param": {
-        "bonusIds": null,
-        "category1": null,
-        "category2": null,
-        "category3": null,
-        "deliveryType": null,
-        "fromCommission": null,
-        "toCommission": null,
-        "fromPrice": null,
-        "toPrice": null,
-        "hasCoupon": null,
-        "isHot": null,
-        "isNeedPreSale": null,
-        "isPinGou": null,
-        "isZY": null,
-        "isCare": null,
-        "lock": null,
-        "orientationFlag": null,
-        "sort": null,
-        "sortName": null,
-        "keyWord": keyWord,
-        "searchType": "st2",
-        "keywordType": "kt0",
-        "hasSimRecommend": 1,
-        "requestScene": 0,
-        "requestExtFields": ["shopInfo", "orientations"],
-        "source": 20310
-      },
-      "clientPageId": "jingfen_pc"
-    };
-
-    // 使用保存的 URL 和 headers
+    // 使用保存的 URL（完全不修改）
     let url = savedParams.url;
 
-    // 更新 body 参数
-    const encodedBody = encodeURIComponent(JSON.stringify(bodyData));
-    url = url.replace(/body=[^&]*/, `body=${encodedBody}`);
+    // 如果有 body，解析并只替换 keyWord
+    if (savedParams.body) {
+      try {
+        // 从 URL 中提取原始 body 参数
+        const urlObj = new URL(url);
+        const bodyParam = urlObj.searchParams.get('body');
+
+        if (bodyParam) {
+          // 解码 body
+          const bodyData = JSON.parse(decodeURIComponent(bodyParam));
+
+          // 只替换我们需要修改的字段
+          if (bodyData.param) {
+            bodyData.param.keyWord = keyWord;
+            if (pageNo !== undefined) {
+              bodyData.page = bodyData.page || {};
+              bodyData.page.pageNo = pageNo;
+            }
+            if (pageSize !== undefined) {
+              bodyData.page = bodyData.page || {};
+              bodyData.page.pageSize = pageSize;
+            }
+          }
+
+          // 重新编码并替换 URL 中的 body 参数
+          const newBodyEncoded = encodeURIComponent(JSON.stringify(bodyData));
+          urlObj.searchParams.set('body', newBodyEncoded);
+          url = urlObj.toString();
+        }
+      } catch (e) {
+        console.error('解析 body 失败，使用原始 URL:', e);
+      }
+    }
 
     const response = await fetch(url, {
       headers: savedParams.headers,
@@ -109,36 +101,38 @@ export async function getPromotionLink(params: GetPromotionLinkParams): Promise<
   }
 
   try {
-    // 构建请求body
-    const bodyData = {
-      "funName": "getCode",
-      "param": {
-        "materialId": Number(materialId),
-        "materialType": 1,
-        "needAutoVerifyPlan": null,
-        "planId": Number(planId),
-        "promotionType": 15,
-        "receiveType": "cps",
-        "wareUrl": `http://item.jd.com/${materialId}.html`,
-        "isSmartGraphics": 0,
-        "requestId": requestId,
-        "command": 1,
-        "ext1": "618%7Cpc%7C"
-      },
-      "clientPageId": "jingfen_pc"
-    };
-
-    const bodyString = `body=${encodeURIComponent(JSON.stringify(bodyData))}`;
-
-    // 使用保存的 URL
+    // 使用保存的 URL（完全不修改）
     const url = savedParams.url;
 
+    // 解析原始 body
+    let bodyString = savedParams.body || '';
+
+    try {
+      // 提取 body 参数
+      const bodyMatch = bodyString.match(/body=([^&]*)/);
+      if (bodyMatch) {
+        const bodyData = JSON.parse(decodeURIComponent(bodyMatch[1]));
+
+        // 只替换我们需要修改的字段
+        if (bodyData.param) {
+          bodyData.param.materialId = Number(materialId);
+          bodyData.param.planId = Number(planId);
+          bodyData.param.wareUrl = `http://item.jd.com/${materialId}.html`;
+          if (requestId) {
+            bodyData.param.requestId = requestId;
+          }
+        }
+
+        // 重新编码
+        bodyString = `body=${encodeURIComponent(JSON.stringify(bodyData))}`;
+      }
+    } catch (e) {
+      console.error('解析 body 失败，使用原始 body:', e);
+    }
+
     const response = await fetch(url, {
-      headers: {
-        ...savedParams.headers,
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      method: 'POST',
+      headers: savedParams.headers,
+      method: savedParams.method || 'POST',
       body: bodyString
     });
 
