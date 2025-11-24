@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "JD Union API Capturer",
+  "version": "1.0.1",
+  "description": "Capture JD Union API requests with complete headers including httpOnly cookies",
+  "permissions": [
+    "webRequest",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://api.m.jd.com/*",
+    "https://*.jd.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
