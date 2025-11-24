@@ -68,6 +68,10 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
       }
     }
 
+    console.log('🚀 发送请求到:', url.substring(0, 100) + '...');
+    console.log('📤 请求 headers 中是否有 cookie:', !!savedParams.headers?.cookie);
+    console.log('🍪 Cookie 长度:', savedParams.headers?.cookie?.length || 0);
+
     const response = await fetch(url, {
       headers: savedParams.headers,
       method: savedParams.method || 'GET'
