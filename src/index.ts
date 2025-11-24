@@ -73,10 +73,21 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
       method: savedParams.method || 'GET'
     });
 
-    const data = await response.json();
+    // 先获取文本响应，检查是否是 JSON
+    const responseText = await response.text();
 
-    // 调试日志
-    console.log('🔍 searchJDGoods 响应:', JSON.stringify(data, null, 2));
+    // 尝试解析 JSON
+    let data;
+    try {
+      data = JSON.parse(responseText);
+      console.log('✅ searchJDGoods 成功, code:', data.code || 'N/A');
+    } catch (parseError) {
+      console.error('❌ JSON 解析失败！');
+      console.error('📡 响应状态:', response.status, response.statusText);
+      console.error('📄 Content-Type:', response.headers.get('content-type'));
+      console.error('📝 响应内容:', responseText);
+      throw new Error(`API 返回非 JSON 数据。状态码: ${response.status}。响应前200字符: ${responseText.substring(0, 200)}`);
+    }
 
     return data;
   } catch (error) {
@@ -143,7 +154,22 @@ export async function getPromotionLink(params: GetPromotionLinkParams): Promise<
       body: bodyString
     });
 
-    const data = await response.json();
+    // 先获取文本响应，检查是否是 JSON
+    const responseText = await response.text();
+
+    // 尝试解析 JSON
+    let data;
+    try {
+      data = JSON.parse(responseText);
+      console.log('✅ getPromotionLink 成功, code:', data.code || 'N/A');
+    } catch (parseError) {
+      console.error('❌ JSON 解析失败！');
+      console.error('📡 响应状态:', response.status, response.statusText);
+      console.error('📄 Content-Type:', response.headers.get('content-type'));
+      console.error('📝 响应内容:', responseText);
+      throw new Error(`API 返回非 JSON 数据。状态码: ${response.status}。响应前200字符: ${responseText.substring(0, 200)}`);
+    }
+
     return data;
   } catch (error) {
     throw error;
@@ -157,19 +183,12 @@ export async function getShortUrlForProduct(keyWord: string): Promise<any> {
   // 1. 搜索商品
   const searchResult = await searchJDGoods({ keyWord, pageSize: 1 });
 
-  console.log('🔍 搜索结果结构:', {
-    hasResult: !!searchResult.result,
-    hasSkuPage: !!searchResult.result?.skuPage,
-    hasSkuPageResult: !!searchResult.result?.skuPage?.result,
-    skuCount: searchResult.result?.skuPage?.result?.length,
-    code: searchResult.code,
-    message: searchResult.message
-  });
-
   if (!searchResult.result || !searchResult.result.skuPage || !searchResult.result.skuPage.result || searchResult.result.skuPage.result.length === 0) {
-    console.error('❌ 完整搜索结果:', JSON.stringify(searchResult, null, 2));
-    throw new Error('未找到相关商品');
+    console.error('❌ 未找到商品。code:', searchResult.code, 'message:', searchResult.message);
+    throw new Error(`未找到相关商品。API 返回: code=${searchResult.code}, message=${searchResult.message}`);
   }
+
+  console.log('✅ 搜索到', searchResult.result.skuPage.result.length, '个商品');
 
   const firstProduct = searchResult.result.skuPage.result[0];
 
