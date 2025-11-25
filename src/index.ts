@@ -16,8 +16,6 @@ export interface SearchGoodsParams {
 export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
   const {
     keyWord,
-    pageNo,
-    pageSize
   } = params;
 
   // 从 ParamsManager 获取保存的请求参数
@@ -33,9 +31,11 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
 
     // 使用保存的 URL（完全不修改）
     let url = savedParams.url;
-
+    console.log('🚀 保存的 url:', url);
+    console.log('🚀 savedParams', savedParams);
     // 如果有 body，解析并只替换 keyWord
-    if (savedParams.body) {
+ 
+      console.log('🚀 保存的 body:', savedParams.body);
       try {
         // 从 URL 中提取原始 body 参数
         const urlObj = new URL(url);
@@ -48,16 +48,8 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
           // 只替换我们需要修改的字段
           if (bodyData.param) {
             bodyData.param.keyWord = keyWord;
-            if (pageNo !== undefined) {
-              bodyData.page = bodyData.page || {};
-              bodyData.page.pageNo = pageNo;
-            }
-            if (pageSize !== undefined) {
-              bodyData.page = bodyData.page || {};
-              bodyData.page.pageSize = pageSize;
-            }
           }
-
+          console.log('🚀 替换后的 body:', JSON.stringify(bodyData, null, 2));
           // 重新编码并替换 URL 中的 body 参数
           const newBodyEncoded = encodeURIComponent(JSON.stringify(bodyData));
           urlObj.searchParams.set('body', newBodyEncoded);
@@ -66,7 +58,7 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
       } catch (e) {
         console.error('解析 body 失败，使用原始 URL:', e);
       }
-    }
+    
 
     console.log('🚀 发送请求到:', url.substring(0, 100) + '...');
     console.log('📤 请求 headers 中是否有 cookie:', !!savedParams.headers?.cookie);
