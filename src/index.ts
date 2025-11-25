@@ -55,6 +55,8 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
           urlObj.searchParams.set('body', newBodyEncoded);
           url = urlObj.toString();
         }
+        console.log('🚀 替换前:', savedParams.url);
+        console.log('🚀 替换后的 url:', url);
       } catch (e) {
         console.error('解析 body 失败，使用原始 URL:', e);
       }
