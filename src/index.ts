@@ -51,8 +51,8 @@ export async function searchJDGoods(params: SearchGoodsParams): Promise<any> {
           }
           console.log('🚀 替换后的 body:', JSON.stringify(bodyData, null, 2));
           // 重新编码并替换 URL 中的 body 参数
-          const newBodyEncoded = encodeURIComponent(JSON.stringify(bodyData));
-          urlObj.searchParams.set('body', newBodyEncoded);
+          // 注意：urlObj.searchParams.set() 会自动进行 URL 编码，所以传入原始 JSON 字符串即可
+          urlObj.searchParams.set('body', JSON.stringify(bodyData));
           url = urlObj.toString();
         }
         console.log('🚀 替换前:', savedParams.url);
