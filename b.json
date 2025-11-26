@@ -1,0 +1,667 @@
+{
+    "code": 200,
+    "hasNext": false,
+    "lastIndex": 0,
+    "message": "success",
+    "needTotal": true,
+    "pageNo": 1,
+    "pageSize": 20,
+    "result": {
+        "cache": 0,
+        "cate1List": [
+            {
+                "categoryId": 1315,
+                "categoryName": "服饰内衣"
+            },
+            {
+                "categoryId": 1320,
+                "categoryName": "食品饮料"
+            },
+            {
+                "categoryId": 737,
+                "categoryName": "家用电器"
+            },
+            {
+                "categoryId": 1319,
+                "categoryName": "母婴"
+            },
+            {
+                "categoryId": 12218,
+                "categoryName": "生鲜"
+            },
+            {
+                "categoryId": 670,
+                "categoryName": "电脑、办公"
+            },
+            {
+                "categoryId": 9987,
+                "categoryName": "手机通讯"
+            },
+            {
+                "categoryId": 16750,
+                "categoryName": "个人护理"
+            },
+            {
+                "categoryId": 15901,
+                "categoryName": "家庭清洁/纸品"
+            },
+            {
+                "categoryId": 1316,
+                "categoryName": "美妆护肤"
+            },
+            {
+                "categoryId": 1318,
+                "categoryName": "运动户外"
+            },
+            {
+                "categoryId": 9192,
+                "categoryName": "医疗保健"
+            },
+            {
+                "categoryId": 4938,
+                "categoryName": "本地生活/旅游出行"
+            },
+            {
+                "categoryId": 1713,
+                "categoryName": "图书"
+            },
+            {
+                "categoryId": 11729,
+                "categoryName": "鞋靴"
+            },
+            {
+                "categoryId": 1620,
+                "categoryName": "生活日用"
+            },
+            {
+                "categoryId": 6728,
+                "categoryName": "汽车用品"
+            },
+            {
+                "categoryId": 6196,
+                "categoryName": "厨具"
+            },
+            {
+                "categoryId": 9855,
+                "categoryName": "家装建材"
+            },
+            {
+                "categoryId": 652,
+                "categoryName": "数码"
+            },
+            {
+                "categoryId": 15248,
+                "categoryName": "家纺"
+            },
+            {
+                "categoryId": 1672,
+                "categoryName": "奢侈品"
+            },
+            {
+                "categoryId": 9847,
+                "categoryName": "家具"
+            },
+            {
+                "categoryId": 12259,
+                "categoryName": "酒类"
+            },
+            {
+                "categoryId": 6233,
+                "categoryName": "玩具乐器"
+            },
+            {
+                "categoryId": 17329,
+                "categoryName": "箱包皮具"
+            },
+            {
+                "categoryId": 6994,
+                "categoryName": "宠物生活"
+            },
+            {
+                "categoryId": 6144,
+                "categoryName": "珠宝首饰"
+            },
+            {
+                "categoryId": 12473,
+                "categoryName": "农资园艺"
+            },
+            {
+                "categoryId": 5025,
+                "categoryName": "钟表眼镜"
+            },
+            {
+                "categoryId": 13314,
+                "categoryName": "医药"
+            },
+            {
+                "categoryId": 13765,
+                "categoryName": "二手商品"
+            },
+            {
+                "categoryId": 13887,
+                "categoryName": "邮币"
+            },
+            {
+                "categoryId": 12650,
+                "categoryName": "拍卖"
+            },
+            {
+                "categoryId": 4053,
+                "categoryName": "文娱"
+            },
+            {
+                "categoryId": 14065,
+                "categoryName": "工业品"
+            },
+            {
+                "categoryId": 5272,
+                "categoryName": "数字内容"
+            },
+            {
+                "categoryId": 13678,
+                "categoryName": "教育培训"
+            },
+            {
+                "categoryId": 12379,
+                "categoryName": "汽车"
+            },
+            {
+                "categoryId": 15980,
+                "categoryName": "到家服务"
+            },
+            {
+                "categoryId": 4052,
+                "categoryName": "影视"
+            },
+            {
+                "categoryId": 4051,
+                "categoryName": "音乐"
+            },
+            {
+                "categoryId": 15083,
+                "categoryName": "房地产"
+            },
+            {
+                "categoryId": 13720,
+                "categoryName": "非药健康"
+            },
+            {
+                "categoryId": 15126,
+                "categoryName": "艺术品"
+            },
+            {
+                "categoryId": 13996,
+                "categoryName": "IP"
+            },
+            {
+                "categoryId": 36574,
+                "categoryName": "休闲食品"
+            },
+            {
+                "categoryId": 36320,
+                "categoryName": "五金/工具"
+            },
+            {
+                "categoryId": 34884,
+                "categoryName": "粮油调味"
+            },
+            {
+                "categoryId": 35338,
+                "categoryName": "家居饰品"
+            },
+            {
+                "categoryId": 27508,
+                "categoryName": "摩托车/电动车"
+            },
+            {
+                "categoryId": 36720,
+                "categoryName": "水饮冲调"
+            },
+            {
+                "categoryId": 34767,
+                "categoryName": "居家布艺"
+            },
+            {
+                "categoryId": 37462,
+                "categoryName": "文教文化用品"
+            },
+            {
+                "categoryId": 43575,
+                "categoryName": "厨房卫浴"
+            },
+            {
+                "categoryId": 34675,
+                "categoryName": "床上用品"
+            },
+            {
+                "categoryId": 37893,
+                "categoryName": "灯饰照明"
+            },
+            {
+                "categoryId": 35025,
+                "categoryName": "收纳用品"
+            },
+            {
+                "categoryId": 27983,
+                "categoryName": "营养保健"
+            },
+            {
+                "categoryId": 27546,
+                "categoryName": "传统滋补"
+            },
+            {
+                "categoryId": 33458,
+                "categoryName": "元器件"
+            },
+            {
+                "categoryId": 18528,
+                "categoryName": "民俗/非遗"
+            },
+            {
+                "categoryId": 31443,
+                "categoryName": "宠物健康"
+            },
+            {
+                "categoryId": 27156,
+                "categoryName": "健康服务"
+            },
+            {
+                "categoryId": 44737,
+                "categoryName": "商用电器"
+            },
+            {
+                "categoryId": 23893,
+                "categoryName": "工品汇-仪器仪表"
+            },
+            {
+                "categoryId": 17991,
+                "categoryName": "（京喜通）休闲零食"
+            },
+            {
+                "categoryId": 30746,
+                "categoryName": "公益"
+            },
+            {
+                "categoryId": 27338,
+                "categoryName": "院端医疗器械"
+            },
+            {
+                "categoryId": 18017,
+                "categoryName": "（京喜通）纸品家清"
+            },
+            {
+                "categoryId": 21288,
+                "categoryName": "废弃商品"
+            },
+            {
+                "categoryId": 18008,
+                "categoryName": "（京喜通）个护美妆"
+            },
+            {
+                "categoryId": 17997,
+                "categoryName": "（京喜通）冲调保健"
+            },
+            {
+                "categoryId": 18000,
+                "categoryName": "（京喜通）方便速食"
+            },
+            {
+                "categoryId": 19882,
+                "categoryName": "二手回收"
+            }
+        ],
+        "cate2List": [],
+        "cate3List": [],
+        "hotWords": [],
+        "recommendList": [
+            {
+                "bestRankInfo": null,
+                "bonusActivityInfo": {
+                    "activityIdList": [],
+                    "bestUnionActivityInfo": null,
+                    "bonusPerType": null,
+                    "fitActivityTypes": [],
+                    "isBonus": false,
+                    "isPreOrRunActivity": 1,
+                    "unionGoodsActivityInfos": []
+                },
+                "cashGiftEntityList": [],
+                "comments": 6,
+                "commission": 0.06,
+                "commissionShare": 0.5,
+                "deliveryType": 0,
+                "displayStyle": 0,
+                "goodComments": 1,
+                "goodCommentsShare": 100,
+                "hasCoupon": 0,
+                "imageUrl": "jfs/t1/228918/19/1032/79578/653cc014Fce80a035/8e5c06b5595bbb7c.jpg",
+                "imgList": [
+                    "jfs/t1/228918/19/1032/79578/653cc014Fce80a035/8e5c06b5595bbb7c.jpg",
+                    "jfs/t1/189429/29/40526/71508/653cc015F8a38456f/f6e1082578b798ac.jpg",
+                    "jfs/t1/100265/15/42304/99724/653cc015F673aa7a6/157a06db4f47f1ea.jpg",
+                    "jfs/t1/235805/31/1005/28935/653cc013F0caa1f3d/f17ea7ffde7f5158.jpg",
+                    "jfs/t1/129238/12/39770/80614/653cc014F5e98bfe5/c2692c45c5b7d968.jpg",
+                    "jfs/t1/235846/22/964/9765/653cc015F028830b6/13ea229b6c194ccb.jpg",
+                    "jfs/t1/221282/31/30436/19691/653cc122F1c39b719/fa756ddb7dd1b57b.jpg"
+                ],
+                "inOrderComm30Days": 0.0,
+                "inOrderCount30Days": 0,
+                "isCommonPlan": 1,
+                "isLock": 0,
+                "jxFlags": [],
+                "jxGoods": false,
+                "orientationFlag": 0,
+                "orientations": [],
+                "otherCouponList": [],
+                "planId": 3388592115,
+                "plusCommissionShare": 0.5,
+                "promotionInfo": null,
+                "promotionInfoList": [],
+                "purchasePriceInfo": {
+                    "couponBenefit": 0.00,
+                    "promotionLabelList": [],
+                    "purchasePrice": 12.90,
+                    "thresholdPrice": 12.90,
+                    "totalBenefit": 0.00,
+                    "unionCouponList": []
+                },
+                "requestId": "10106242746-161280-1764165196262",
+                "seckillEndTime": null,
+                "seckillStartTime": null,
+                "secondPriceInfoList": [],
+                "shopInfo": {
+                    "afsFactorScoreRankGrade": "中",
+                    "afterServiceScore": "8.60",
+                    "commentFactorScoreRankGrade": "高",
+                    "logisticsFactorScoreRankGrade": "高",
+                    "logisticsLvyueScore": "9.10",
+                    "scoreRankRate": "79.03",
+                    "scoreRankRateGrade": "4.7",
+                    "shopId": 13207526,
+                    "shopLabel": "0",
+                    "shopLevel": 4.5,
+                    "shopName": "然野厨具专营店",
+                    "userEvaluateScore": "9.60"
+                },
+                "skuId": 10089568379196,
+                "skuLabelInfo": null,
+                "skuName": "青苹果青苹果水晶玻璃红酒杯家用酒杯葡萄酒杯聚会酒店高脚杯320ml 【两只装】",
+                "skuTagList": [
+                    {
+                        "id": 17,
+                        "index": 2,
+                        "name": "极速审核",
+                        "type": 12
+                    },
+                    {
+                        "id": 17,
+                        "index": 2,
+                        "name": "7天价保",
+                        "type": 12
+                    },
+                    {
+                        "id": 17,
+                        "index": 2,
+                        "name": "闪电退款",
+                        "type": 12
+                    },
+                    {
+                        "id": 17,
+                        "index": 2,
+                        "name": "晚发赔",
+                        "type": 12
+                    },
+                    {
+                        "id": 17,
+                        "index": 2,
+                        "name": "晚到赔",
+                        "type": 12
+                    },
+                    {
+                        "id": 18,
+                        "index": 3,
+                        "name": "7天无理由退货",
+                        "type": 12
+                    },
+                    {
+                        "id": 17,
+                        "index": 2,
+                        "name": "免费上门退换",
+                        "type": 12
+                    }
+                ],
+                "skuUrl": "https://item.m.jd.com/product/10089568379196.html?sku=10089568379196",
+                "venderName": "然野厨具专营店",
+                "vid": 14156093,
+                "videos": [],
+                "wlPrice": 12.90
+            }
+        ],
+        "requestId": "10106242746-161280-1764165196262",
+        "skuPage": {
+            "hasNext": false,
+            "listType": 0,
+            "pageNo": 1,
+            "pageSize": 60,
+            "result": [
+                {
+                    "bestRankInfo": null,
+                    "bonusActivityInfo": {
+                        "activityIdList": [
+                            13728
+                        ],
+                        "bestUnionActivityInfo": null,
+                        "bonusPerType": {
+                            "6": 1.60
+                        },
+                        "fitActivityTypes": [],
+                        "isBonus": false,
+                        "isPreOrRunActivity": 1,
+                        "unionGoodsActivityInfos": [
+                            {
+                                "activityType": 6,
+                                "applyStatus": 3,
+                                "beginTime": 1764000000000,
+                                "beginTimeStamp": 1764000000000,
+                                "bestActivity": false,
+                                "bonusRate": 0,
+                                "bonusSkuNum": 3300,
+                                "bonusType": 3,
+                                "endTime": 1764604799000,
+                                "endTimeStamp": 1764604799000,
+                                "estimateBonus": 1.60,
+                                "hasSuperBenefit": 1,
+                                "id": 13728,
+                                "level": 16,
+                                "name": "【超级补贴频道】前n加倍（爆款50%）11.25-12.1",
+                                "remark": "推广在商品详情页有“超级补贴限量”标签的商品，前N件可获得活动补贴的佣金",
+                                "showType": 1,
+                                "state": 3,
+                                "stockSkuNum": 3297,
+                                "unionUdts": [
+                                    {
+                                        "name": "全平台",
+                                        "udt": 0
+                                    },
+                                    {
+                                        "name": "公众号",
+                                        "udt": 200
+                                    },
+                                    {
+                                        "name": "京粉APP",
+                                        "udt": 17
+                                    },
+                                    {
+                                        "name": "小程序",
+                                        "udt": 182
+                                    },
+                                    {
+                                        "name": "联盟API",
+                                        "udt": 195
+                                    },
+                                    {
+                                        "name": "联盟PC端",
+                                        "udt": 618
+                                    },
+                                    {
+                                        "name": "联盟API（高级）",
+                                        "udt": 196
+                                    },
+                                    {
+                                        "name": "宙斯联盟API",
+                                        "udt": 142
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "cashGiftEntityList": [],
+                    "comments": 500000,
+                    "commission": 4.00,
+                    "commissionShare": 30.0,
+                    "deliveryType": 1,
+                    "displayStyle": 0,
+                    "goodComments": 200000,
+                    "goodCommentsShare": 99,
+                    "hasCoupon": 1,
+                    "imageUrl": "jfs/t1/353271/22/18954/121029/6926c9b9F90c7365b/9c7ae7038498a3f7.jpg",
+                    "imgList": [
+                        "jfs/t1/353271/22/18954/121029/6926c9b9F90c7365b/9c7ae7038498a3f7.jpg",
+                        "jfs/t1/28746/29/21041/122630/66a9a4fdFc4a3106e/6e5257c7a5fe9629.jpg",
+                        "jfs/t1/35198/25/22307/67239/66a9a4fdF9d60d38c/740ea886ca91fa0f.jpg",
+                        "jfs/t1/75442/10/26872/96554/66a9a4fcF6a4a958f/f7321aa6256af2bf.jpg",
+                        "jfs/t1/67093/35/25483/127107/66a9a4feF1caea13c/4776373ddc73fe99.jpg",
+                        "jfs/t1/296736/25/10794/64770/68367ca5Fb16dffed/42584c8b895cb487.jpg",
+                        "jfs/t1/247399/34/11259/196346/66820e06Fb966048d/12ca3469ff05f864.jpg",
+                        "jfs/t1/224969/3/9965/81767/6588fd18F7fb0b601/7a1d41658331a882.jpg",
+                        "jfs/t1/243585/36/20818/110785/6710c927Fc3144f3c/bfb4ca6ceeefd4e0.jpg"
+                    ],
+                    "inOrderComm30Days": 3152.07,
+                    "inOrderCount30Days": 500,
+                    "isCommonPlan": 1,
+                    "isLock": 1,
+                    "jxFlags": [],
+                    "jxGoods": false,
+                    "orientationFlag": 1,
+                    "orientations": [
+                        {
+                            "adowner": "s_ntmr66_m",
+                            "displayType": 0,
+                            "dxType": 0,
+                            "endTime": "2025-12-01 23:59:59",
+                            "isHot": 1,
+                            "isLock": 1,
+                            "mediaType": 0,
+                            "planId": 3823348912,
+                            "planStatus": 6,
+                            "planType": 6,
+                            "promoteSource": 3,
+                            "ruleType": 25,
+                            "startTime": "2025-11-25 00:00:00",
+                            "wlRatio": 30.00
+                        }
+                    ],
+                    "otherCouponList": [],
+                    "planId": 3823348912,
+                    "plusCommissionShare": 30.0,
+                    "promotionInfo": null,
+                    "promotionInfoList": [],
+                    "purchasePriceInfo": {
+                        "couponBenefit": 1.48,
+                        "promotionBenefit": 0.00,
+                        "promotionLabelList": [],
+                        "purchasePrice": 13.32,
+                        "thresholdPrice": 14.80,
+                        "totalBenefit": 1.48,
+                        "unionCouponList": [
+                            {
+                                "batchId": 1351094894,
+                                "beginTime": "2025.11.02",
+                                "businessLabel": "0",
+                                "couponLink": "SEwwTWFGXQkfZ3hsbHomb1pGQkMfVXUOSkQfZG9lS0AmUR1OE04da0NnE0wKR3gUYXYqRGlPbXUMaWxSc2crZxJiYHoaRVlIYR05QmgXCRMoX0tRFmkGYl9sVGwYX1kOT1RpY21y",
+                                "couponStyle": 3,
+                                "couponUrl": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoexw7m7kCMiD7iTaR7EStbClIPROFqWBuA8AD_DcskE8gdB4-6vyar2LXDuOpIFys-kq7EGQ",
+                                "discount": 0.9,
+                                "discountActual": 1.48,
+                                "endTime": "2025.11.30",
+                                "isBestCoupon": 0,
+                                "quota": 1.0,
+                                "remainCnt": 766925,
+                                "showStatus": 0,
+                                "timeCouponList": [],
+                                "useEndTime": "2025.11.30",
+                                "useStartTime": "2025.11.02"
+                            }
+                        ]
+                    },
+                    "requestId": "10106242746-161280-1764165196262",
+                    "seckillEndTime": null,
+                    "seckillStartTime": null,
+                    "secondPriceInfoList": [],
+                    "shopInfo": {
+                        "shopId": 1000001674,
+                        "shopLabel": "0",
+                        "shopLevel": 4.9,
+                        "shopName": "青苹果京东自营旗舰店"
+                    },
+                    "skuId": 2144764,
+                    "skuLabelInfo": null,
+                    "skuName": "青苹果红酒杯2只装 高脚杯葡波尔多萄酒杯 无铅玻璃杯洋酒杯350ml",
+                    "skuTagList": [
+                        {
+                            "id": 17,
+                            "index": 2,
+                            "name": "供应商售后",
+                            "type": 12
+                        },
+                        {
+                            "id": 4,
+                            "index": 1,
+                            "name": "自营",
+                            "type": 11
+                        },
+                        {
+                            "id": 36,
+                            "index": 1,
+                            "name": "国补最高减10%",
+                            "type": 6
+                        },
+                        {
+                            "id": 17,
+                            "index": 2,
+                            "name": "7天价保",
+                            "type": 12
+                        },
+                        {
+                            "id": 0,
+                            "index": 1,
+                            "name": "超级补贴",
+                            "type": 8
+                        },
+                        {
+                            "id": 17,
+                            "index": 2,
+                            "name": "破损包退换",
+                            "type": 12
+                        },
+                        {
+                            "id": 18,
+                            "index": 3,
+                            "name": "7天无理由退货",
+                            "type": 12
+                        }
+                    ],
+                    "skuUrl": "https://item.m.jd.com/product/2144764.html?sku=2144764",
+                    "venderName": "青苹果京东自营旗舰店",
+                    "vid": 1000001674,
+                    "videos": [],
+                    "wlPrice": 14.80
+                }
+            ],
+            "total": 1
+        }
+    },
+    "startIndex": 0,
+    "startNum": 0,
+    "totalNum": 0
+}

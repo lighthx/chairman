@@ -1,0 +1,18 @@
+{
+    "funName": "getCode",
+    "param": {
+        "couponLink": "//coupon.m.jd.com/coupons/show.action?linkKey=AAROH_xIpeffAs_-naABEFoexw7m7kCMiD7iTaR7EStbClIPROFqWBuA8AD_DcskE8gdB4-6vyar2LXDuOpIFys-kq7EGQ",
+        "materialId": 2144764,
+        "materialType": 1,
+        "needAutoVerifyPlan": null,
+        "planId": 3823348912,
+        "promotionType": 15,
+        "receiveType": "cps",
+        "wareUrl": "http://item.jd.com/2144764.html",
+        "isSmartGraphics": 0,
+        "requestId": "10106242746-161280-1764165196262",
+        "command": 1,
+        "ext1": "618%7Cpc%7C"
+    },
+    "clientPageId": "jingfen_pc"
+}

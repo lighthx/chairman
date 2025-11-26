@@ -97,16 +97,19 @@ export interface GetPromotionLinkParams {
   materialId: string | number;  // 商品ID (skuId)
   planId: string | number;      // 计划ID
   requestId?: string;            // 请求ID (可选)
+  couponLink?: string;            // 优惠券链接 (可选)
 }
 
 /**
  * 获取推广链接
  */
 export async function getPromotionLink(params: GetPromotionLinkParams): Promise<any> {
+  console.log('🚀 getPromotionLink params:', params);
   const {
     materialId,
     planId,
-    requestId = ""
+    requestId = "",
+    couponLink = ""
   } = params;
 
   // 从 ParamsManager 获取保存的请求参数
@@ -136,6 +139,9 @@ export async function getPromotionLink(params: GetPromotionLinkParams): Promise<
           bodyData.param.wareUrl = `http://item.jd.com/${materialId}.html`;
           if (requestId) {
             bodyData.param.requestId = requestId;
+          }
+          if (couponLink) {
+            bodyData.param.couponLink = couponLink;
           }
         }
 
@@ -194,7 +200,8 @@ export async function getShortUrlForProduct(keyWord: string): Promise<any> {
   const promotionResult = await getPromotionLink({
     materialId: firstProduct.skuId,
     planId: firstProduct.planId,
-    requestId: searchResult.result.requestId
+    requestId: searchResult.result.requestId,
+    couponLink: firstProduct?.purchasePriceInfo?.unionCouponList[0]?.couponUrl??""
   });
 
   return promotionResult;
